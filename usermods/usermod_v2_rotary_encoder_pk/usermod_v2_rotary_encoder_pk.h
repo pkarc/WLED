@@ -207,7 +207,7 @@ void RotaryEncoderPkUsermod::setup()
   DEBUG_PRINTLN(F("Usermod Rotary Encoder init."));
 
   PinManagerPinType pins[3] = { { pinA, false }, { pinB, false }, { pinC, false } };
-  if (pinA<0 || pinB<0 || !pinManager.allocateMultiplePins(pins, 3, PinOwner::UM_RotaryEncoderUI)) {
+  if (pinA<0 || pinB<0 || !PinManager::allocateMultiplePins(pins, 3, PinOwner::UM_RotaryEncoderUI)) {
     pinA = pinB = pinC = -1;
     enabled = false;
     return;
@@ -452,9 +452,9 @@ bool RotaryEncoderPkUsermod::readFromConfig(JsonObject &root) {
     DEBUG_PRINTLN(F(" config (re)loaded."));
     // changing parameters from settings page
     if (pinA!=newDTpin || pinB!=newCLKpin || pinC!=newSWpin) {
-      pinManager.deallocatePin(pinA, PinOwner::UM_RotaryEncoderUI);
-      pinManager.deallocatePin(pinB, PinOwner::UM_RotaryEncoderUI);
-      pinManager.deallocatePin(pinC, PinOwner::UM_RotaryEncoderUI);
+      PinManager::deallocatePin(pinA, PinOwner::UM_RotaryEncoderUI);
+      PinManager::deallocatePin(pinB, PinOwner::UM_RotaryEncoderUI);
+      PinManager::deallocatePin(pinC, PinOwner::UM_RotaryEncoderUI);
       DEBUG_PRINTLN(F("Deallocated old pins."));
       pinA = newDTpin;
       pinB = newCLKpin;
