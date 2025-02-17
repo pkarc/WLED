@@ -73,6 +73,10 @@
   #endif
 #endif
 
+#ifdef USERMOD_ROTARY_ENCODER_PK
+  #include "../usermods/usermod_v2_rotary_encoder_pk/usermod_v2_rotary_encoder_pk.h"
+#endif
+
 #ifdef USERMOD_AUTO_SAVE
   #include "../usermods/usermod_v2_auto_save/usermod_v2_auto_save.h"
 #endif
@@ -255,6 +259,10 @@ void registerUsermods()
 
   #ifdef USERMOD_ROTARY_ENCODER_UI
   usermods.add(new RotaryEncoderUIUsermod()); // can use USERMOD_FOUR_LINE_DISPLAY
+  #endif
+
+   #ifdef USERMOD_ROTARY_ENCODER_PK
+  usermods.add(new RotaryEncoderPkUsermod()); // can use USERMOD_FOUR_LINE_DISPLAY
   #endif
 
   #ifdef USERMOD_AUTO_SAVE
